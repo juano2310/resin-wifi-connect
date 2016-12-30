@@ -10,6 +10,9 @@ RUN apt-get update \
 		raspberrypi-bootloader \
 		libdbus-1-dev \
 		libexpat-dev \
+		rabbitmq-server \
+		erlang \
+		logrotate \
 		rfkill \
 	&& rm -rf /var/lib/apt/lists/*
 
@@ -30,7 +33,5 @@ RUN ./node_modules/.bin/bower --allow-root install \
 COPY . /usr/src/app/
 
 RUN ./node_modules/.bin/coffee -c ./src
-
-CMD modprobe i2c-dev
 
 CMD bash start
