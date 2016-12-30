@@ -21,8 +21,5 @@ def main():
     else:
         sense.show_letter("o", text_colour=[0, 255, 0])
 
-    time.sleep(30)
-    sense.clear()
-
 if __name__ == "__main__":
     main()
