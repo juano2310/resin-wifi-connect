@@ -1,7 +1,7 @@
 FROM resin/%%RESIN_MACHINE_NAME%%-node:6
 
 RUN apt-get update \
-	&& apt-get install -y \
+	&& apt-get update && apt-get install -yq --no-install-recommends \
 		dnsmasq \
 		hostapd \
 		iproute2 \
@@ -14,10 +14,6 @@ RUN apt-get update \
 		erlang \
 		logrotate \
 		rfkill \
-	&& rm -rf /var/lib/apt/lists/*
-
-# Use apt-get to install dependencies
-RUN apt-get update && apt-get install -yq --no-install-recommends \
     python-dev \
     python-smbus \
     python-psutil \
