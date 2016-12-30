@@ -3,15 +3,19 @@
 # Enable i2c - needed for the Display-O-Tron HAT
 modprobe i2c-dev
 
-export DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
-
-sleep 1 # Delay needed to avoid DBUS introspection errors
-
-node src/app.js --clear=false
-
 # Run one process loop
 python src/process.py
 
-while true; do
-	sleep 100
-done
+# Start resin-wifi-connect
+export DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
+sleep 1
+node resin-wifi-connect/src/app.js --clear=false
+
+# At this point the WiFi connection has been configured and the device has
+# internet - unless the configured WiFi connection is no longer available.
+
+# Start the main application
+python src/main.py
+
+# Start rabbitmq
+sudo rabbitmq-server service restart
