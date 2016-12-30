@@ -32,20 +32,29 @@ def onConnect(client, userdata, rc):    #event on connecting
 """
 
 def onMessage(client, userdata, message):   #event on receiving message
+    robotAction = ""
 	if message.payload == "38":
-			roboclaw.ForwardMixed(address, 64)
+		roboclaw.ForwardMixed(address, 64)
+        robotAction = "Move Forward"
+        print("Action: " + robotAction)
 	elif message.payload == "40":
 		roboclaw.BackwardMixed(address, 64)
+        robotAction = "Move Backward"
+        print("Action: " + robotAction)
 	elif message.payload == "37":
 		roboclaw.TurnLeftMixed(address, 64)
+        robotAction = "Turn Left"
+        print("Action: " + robotAction)
 	elif message.payload == "39":
 		roboclaw.TurnRightMixed(address, 64)
+        robotAction = "Turn Right"
+        print("Action: " + robotAction)
 	elif message.payload == "":
 		roboclaw.ForwardMixed(address, 0)
 		roboclaw.BackwardMixed(address, 0)
 		roboclaw.TurnRightMixed(address, 0)
 		roboclaw.TurnLeftMixed(address, 0)
-	print("Topic: " + message.topic + ", Message: " + message.payload)
+	#print("Topic: " + message.topic + ", Message: " + message.payload + ", Action: " + robotAction)
 
 while True:
     try:
