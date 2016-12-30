@@ -5,10 +5,10 @@ from sense_hat import SenseHat
 import subprocess
 import process
 
-sense = SenseHat()
-sense.clear()  # Blank the LED matrix
-
 def main():
+    sense = SenseHat()
+    sense.clear()  # Blank the LED matrix
+
     while True:
         # Run one process loop
         process.main()
