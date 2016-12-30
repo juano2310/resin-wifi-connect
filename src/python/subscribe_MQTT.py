@@ -37,18 +37,19 @@ def onConnect(client, userdata, rc):    #event on connecting
 """
 
 def onMessage(client, userdata, message):   #event on receiving message
+	roboAction = ""
 	if message.payload == "38":
 		roboclaw.ForwardMixed(address, 64)
-        print("Action: Moving Forward")
+        roboAction = "Action: Moving Forward"
 	elif message.payload == "40":
 		roboclaw.BackwardMixed(address, 64)
-        print("Action: Moving Backward")
+        roboAction = "Action: Moving Backward"
 	elif message.payload == "37":
 		roboclaw.TurnLeftMixed(address, 64)
-        print("Action: Turning Left")
+        roboAction = "Action: Turning Left"
 	elif message.payload == "39":
 		roboclaw.TurnRightMixed(address, 64)
-        print("Action: Turning Right")
+        roboAction = "Action: Turning Right"
 	elif message.payload == "":
 		roboclaw.ForwardMixed(address, 0)
 		roboclaw.BackwardMixed(address, 0)
