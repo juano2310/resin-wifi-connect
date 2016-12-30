@@ -25,7 +25,7 @@ python src/python/connection_status.py
 # Start rabbitmq
 sudo rabbitmq-server service start -detached
 
-sleep 40 # Delay needed to avoid MQTT connection errors
+sleep 30 # Delay needed to avoid MQTT connection errors
 
 # Run one process loop
 python src/python/subscribe_MQTT.py
