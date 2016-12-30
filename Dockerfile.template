@@ -34,7 +34,7 @@ COPY . /usr/src/app/
 
 RUN ./node_modules/.bin/coffee -c ./src
 
-RUN echo '[{rabbit,        [{loopback_users, []}]}].' |
+RUN echo '[{rabbit,        [{loopback_users, []}]}].' \
         sudo tee /etc/rabbitmq/rabbitmq.config
 
 CMD bash start
