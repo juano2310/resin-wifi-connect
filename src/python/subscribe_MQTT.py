@@ -34,9 +34,9 @@ def onConnect(client, userdata, rc):    #event on connecting
 def onMessage(client, userdata, message):   #event on receiving message
     robotAction = ""
 	if message.payload == "38":
-		roboclaw.ForwardMixed(address, 64)
-        robotAction = "Move Forward"
-        print("Action: " + robotAction)
+			roboclaw.ForwardMixed(address, 64)
+			robotAction = "Move Forward"
+			print("Action: " + robotAction)
 	elif message.payload == "40":
 		roboclaw.BackwardMixed(address, 64)
         robotAction = "Move Backward"

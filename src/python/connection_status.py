@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+import time
 import subprocess
 from sense_hat import SenseHat
 
@@ -20,6 +20,9 @@ def main():
         sense.show_letter("x", text_colour=[255, 0, 0])
     else:
         sense.show_letter("o", text_colour=[0, 255, 0])
+
+    time.sleep(30)
+    sense.clear()
 
 if __name__ == "__main__":
     main()
