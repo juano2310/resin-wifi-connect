@@ -33,7 +33,7 @@ def onConnect(client, userdata, rc):    #event on connecting
 
 def onMessage(client, userdata, message):   #event on receiving message
 	if message.payload == "38":
-			roboclaw.ForwardMixed(address, 64)
+		roboclaw.ForwardMixed(address, 64)
 	elif message.payload == "40":
 		roboclaw.BackwardMixed(address, 64)
 	elif message.payload == "37":
