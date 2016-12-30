@@ -7,9 +7,6 @@ modprobe i2c-dev
 python src/python/start.py
 
 # Run one process loop
-python src/python/process.py
-
-# Run one process loop
 python src/python/subscribe_MQTT.py
 
 # Start resin-wifi-connect
@@ -22,8 +19,11 @@ node src/app.js --clear=false
 # At this point the WiFi connection has been configured and the device has
 # internet - unless the configured WiFi connection is no longer available.
 
+# Run one process loop
+python src/python/process.py
+
 # Start the main application
-python3 src/python/main.py
+python src/python/main.py
 
 # Start rabbitmq
-sudo rabbitmq-server service restart
+# sudo rabbitmq-server service restart
