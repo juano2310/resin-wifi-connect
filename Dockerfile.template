@@ -13,8 +13,6 @@ RUN apt-get update \
 		rfkill \
 	&& rm -rf /var/lib/apt/lists/*
 
-CMD modprobe i2c-dev && python /app/demo.py
-
 RUN mkdir -p /usr/src/app/
 
 WORKDIR /usr/src/app
@@ -32,5 +30,7 @@ RUN ./node_modules/.bin/bower --allow-root install \
 COPY . /usr/src/app/
 
 RUN ./node_modules/.bin/coffee -c ./src
+
+CMD modprobe i2c-dev
 
 CMD bash start

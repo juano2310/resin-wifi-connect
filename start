@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Enable i2c - needed for the Display-O-Tron HAT
+modprobe i2c-dev
+
+# Run one process loop
+python src/process.py
+
 export DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
 
 sleep 1 # Delay needed to avoid DBUS introspection errors
