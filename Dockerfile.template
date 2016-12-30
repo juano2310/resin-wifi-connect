@@ -50,6 +50,5 @@ RUN echo '[{rabbit,        [{loopback_users, []}]}].' >> /etc/rabbitmq/rabbitmq.
 RUN sudo rabbitmq-plugins enable rabbitmq_mqtt
 RUN sudo rabbitmq-plugins enable rabbitmq_web_stomp
 RUN sudo rabbitmq-plugins enable rabbitmq_management
-RUN sudo update-rc.d rabbitmq-server enable
 
 CMD bash start

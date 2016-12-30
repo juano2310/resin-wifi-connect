@@ -23,7 +23,7 @@ python src/python/connection_status.py
 #python src/python/main.py
 
 # Start rabbitmq
-sudo rabbitmq-server service start
+sudo rabbitmq-server service start -detached
 
 # Run one process loop
 python src/python/subscribe_MQTT.py
