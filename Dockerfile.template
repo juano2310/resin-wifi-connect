@@ -13,6 +13,8 @@ RUN apt-get update \
 		rfkill \
 	&& rm -rf /var/lib/apt/lists/*
 
+CMD modprobe i2c-dev && python /app/demo.py
+
 RUN mkdir -p /usr/src/app/
 
 WORKDIR /usr/src/app
