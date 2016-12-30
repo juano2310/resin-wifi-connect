@@ -4,7 +4,7 @@ import subprocess
 from sense_hat import SenseHat
 
 sense = SenseHat()
-sense.set_rotation(90)
+sense.set_rotation(0)
 
 def main():
     # Get the current SSID
@@ -17,9 +17,9 @@ def main():
 
     # Show status on the LCD display
     if SSID is None:
-        sense.show_letter("X", text_colour=[255, 0, 0])
+        sense.show_letter("x", text_colour=[255, 0, 0])
     else:
-        sense.show_letter("C", text_colour=[0, 255, 0])
+        sense.show_letter("o", text_colour=[0, 255, 0])
 
 if __name__ == "__main__":
     main()

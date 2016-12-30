@@ -17,7 +17,7 @@ node src/app.js --clear=false
 # internet - unless the configured WiFi connection is no longer available.
 
 # Start the main application
-python src/python/main.py
+# python src/python/main.py
 
 # Start rabbitmq
 sudo rabbitmq-server service start
