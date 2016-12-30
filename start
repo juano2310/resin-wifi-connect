@@ -6,9 +6,6 @@ modprobe i2c-dev
 # Run once the first time
 python src/python/start.py
 
-# Run one process loop
-python src/python/subscribe_MQTT.py
-
 # Start resin-wifi-connect
 export DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
 
@@ -26,4 +23,7 @@ python src/python/process.py
 python src/python/main.py
 
 # Start rabbitmq
-# sudo rabbitmq-server service restart
+sudo rabbitmq-server service restart
+
+# Run one process loop
+python src/python/subscribe_MQTT.py
