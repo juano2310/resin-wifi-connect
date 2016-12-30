@@ -6,6 +6,8 @@ RUN apt-get update \
 		hostapd \
 		iproute2 \
 		iw \
+		sense-hat \
+		raspberrypi-bootloader \
 		libdbus-1-dev \
 		libexpat-dev \
 		rfkill \
