@@ -29,3 +29,6 @@ sleep 30 # Delay needed to avoid MQTT connection errors
 
 # Run one process loop
 python src/python/subscribe_MQTT.py
+
+# Run one process loop
+python src/python/buttons.py
