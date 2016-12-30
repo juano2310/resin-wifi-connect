@@ -14,7 +14,6 @@ RUN apt-get update \
 		erlang \
 		logrotate \
 		rfkill \
-		sysv-rc-conf \
     python-dev \
     python-smbus \
     python-psutil \
@@ -51,6 +50,6 @@ RUN echo '[{rabbit,        [{loopback_users, []}]}].' >> /etc/rabbitmq/rabbitmq.
 RUN sudo rabbitmq-plugins enable rabbitmq_mqtt
 RUN sudo rabbitmq-plugins enable rabbitmq_web_stomp
 RUN sudo rabbitmq-plugins enable rabbitmq_management
-RUN sudo chkconfig rabbitmq-server on
+RUN sudo update-rc.d rabbitmq-server enable
 
 CMD bash start
