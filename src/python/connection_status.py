@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import subprocess
 from sense_hat import SenseHat
 
 sense = SenseHat()
