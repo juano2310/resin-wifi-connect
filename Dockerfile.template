@@ -18,7 +18,7 @@ RUN apt-get update \
     python-smbus \
     python-psutil \
 		python-pip \
-		pyserial \
+		python-serial \
     wireless-tools && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
