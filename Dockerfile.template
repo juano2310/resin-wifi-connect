@@ -34,7 +34,7 @@ COPY . /usr/src/app/
 
 RUN ./node_modules/.bin/coffee -c ./src
 
-RUN echo '[{rabbit,        [{loopback_users, []}]}].' \
-        sudo tee /etc/rabbitmq/rabbitmq.config
+RUN echo '[{rabbit,        [{loopback_users, []}]}].' >> /etc/rabbitmq/rabbitmq.config
+RUN echo '172.0.1.1  raspberrypi3' >> /etc/hosts
 
 CMD bash start
