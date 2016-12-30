@@ -17,9 +17,9 @@ def main():
 
     # Show status on the LCD display
     if SSID is None:
-        sense.show_message("Not connected", text_colour=[255, 0, 0])
+        sense.show_letter("X", text_colour=[255, 0, 0])
     else:
-        sense.show_message("Connected", text_colour=[0, 255, 0]))
+        sense.show_letter("√", text_colour=[0, 255, 0])
 
 if __name__ == "__main__":
     main()
