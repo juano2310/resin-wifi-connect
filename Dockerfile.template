@@ -35,6 +35,10 @@ COPY . /usr/src/app/
 RUN ./node_modules/.bin/coffee -c ./src
 
 RUN echo '[{rabbit,        [{loopback_users, []}]}].' >> /etc/rabbitmq/rabbitmq.config
-RUN sudo echo '172.0.1.1  raspberrypi3' >> /etc/hosts
+RUN sudo echo "172.0.1.1    raspberrypi3" >> /etc/hosts
+RUN sudo rabbitmq-plugins enable rabbitmq_mqtt
+RUN sudo rabbitmq-plugins enable rabbitmq_web_stomp
+RUN sudo rabbitmq-plugins enable rabbitmq_management
+RUN sudo rabbitmq-server service restart
 
 CMD bash start
