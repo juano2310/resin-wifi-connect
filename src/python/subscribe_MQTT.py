@@ -37,7 +37,7 @@ def onConnect(client, userdata, rc):    #event on connecting
 """
 
 def onMessage(client, userdata, message):   #event on receiving message
-	roboAction = null
+	roboAction = ""
 	if message.payload == "38":
 		roboclaw.ForwardMixed(address, 64)
 		roboAction = "Action: Moving Forward"
@@ -55,7 +55,7 @@ def onMessage(client, userdata, message):   #event on receiving message
 		roboclaw.BackwardMixed(address, 0)
 		roboclaw.TurnRightMixed(address, 0)
 		roboclaw.TurnLeftMixed(address, 0)
-	if roboAction:	#Remove this IF to show all MQTT messages
+	if roboAction != "":	#Remove this IF to show all MQTT messages
 		print("Action: " + roboAction + ", Topic: " + message.topic + ", Message: " + message.payload)
 
 while True:
