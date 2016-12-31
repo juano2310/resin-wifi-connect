@@ -30,6 +30,7 @@ topic = "robot/commands/#"
 def onConnect(client, userdata, rc):    #event on connecting
     client.subscribe([(topic, 1)])  #subscribe
     sense.show_message("Ready", text_colour=[255, 0, 255])
+    print("Ready")
 
 """
  * This method is the callback on receiving messages.
@@ -40,16 +41,16 @@ def onMessage(client, userdata, message):   #event on receiving message
 	roboAction = ""
 	if message.payload == "38":
 		roboclaw.ForwardMixed(address, 64)
-		roboAction = "Action: Moving Forward"
+		roboAction = "Moving Forward"
 	elif message.payload == "40":
 		roboclaw.BackwardMixed(address, 64)
-		roboAction = "Action: Moving Backward"
+		roboAction = "Moving Backward"
 	elif message.payload == "37":
 		roboclaw.TurnLeftMixed(address, 64)
-		roboAction = "Action: Turning Left"
+		roboAction = "Turning Left"
 	elif message.payload == "39":
 		roboclaw.TurnRightMixed(address, 64)
-		roboAction = "Action: Turning Right"
+		roboAction = "Turning Right"
 	elif message.payload == "":
 		roboclaw.ForwardMixed(address, 0)
 		roboclaw.BackwardMixed(address, 0)
