@@ -1,6 +1,7 @@
 import time
 import roboclaw
 import paho.mqtt.client as mqtt
+import subprocess
 from sense_hat import SenseHat
 
 sense = SenseHat()
@@ -51,6 +52,9 @@ def onMessage(client, userdata, message):   #event on receiving message
 	elif message.payload == "39":
 		roboclaw.TurnRightMixed(address, 64)
 		roboAction = "Turning Right"
+	elif message.payload == "button_held":
+		subprocess.call(["node", "src/app.js", "--clear=true"])
+		roboAction = "Reset WiFi"
 	elif message.payload == "":
 		roboclaw.ForwardMixed(address, 0)
 		roboclaw.BackwardMixed(address, 0)
