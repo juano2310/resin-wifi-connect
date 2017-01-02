@@ -1,5 +1,12 @@
 from sense_hat import SenseHat, ACTION_PRESSED, ACTION_HELD, ACTION_RELEASED
 from signal import pause
+import paho.mqtt.client as mqtt
+
+server = "localhost"
+port = 1883
+vhost = "/"
+username = "guest"
+password = "guest"
 
 x = 3
 y = 3
