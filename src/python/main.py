@@ -26,7 +26,7 @@ address = 0x80
 roboclaw.ForwardMixed(address, 0)
 roboclaw.TurnRightMixed(address, 0)
 
-def start_MQTT()
+def start_MQTT():
     while True:
         try:
             client = mqtt.Client(client_id="", clean_session=True, userdata=None, protocol="MQTTv31")
