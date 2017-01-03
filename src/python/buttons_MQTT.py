@@ -1,7 +1,7 @@
 from sense_hat import SenseHat, ACTION_PRESSED, ACTION_HELD, ACTION_RELEASED
 from signal import pause
 import paho.mqtt.client as mqtt
-import daemon
+import subprocess
 
 server = "localhost"
 port = 1883
@@ -22,9 +22,8 @@ try:
 except Exception, e:
 	print e
 
-with daemon.DaemonContext():
-    def joystick_pushed(event):
-        client.publish("commands/joystick", event.direction + "_" + event.action)
+def joystick_pushed(event):
+    client.publish("commands/joystick", event.direction + "_" + event.action)
 
-    sense.stick.direction_any = joystick_pushed
-    pause()
+sense.stick.direction_any = joystick_pushed
+pause()

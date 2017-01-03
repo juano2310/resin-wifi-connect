@@ -25,7 +25,7 @@ sudo rabbitmq-server service start -detached
 sleep 50 # Delay needed to avoid MQTT connection errors
 
 # Run deamons
-python src/python/buttons_MQTT.py
+#python src/python/buttons_MQTT.py
 #python src/python/sensehat_MQTT.py
 #python src/python/driver_MQTT.py
 #python src/python/watchdog.py
