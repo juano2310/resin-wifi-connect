@@ -26,13 +26,14 @@ address = 0x80
 roboclaw.ForwardMixed(address, 0)
 roboclaw.TurnRightMixed(address, 0)
 
+client = mqtt.Client(client_id="", clean_session=True, userdata=None, protocol="MQTTv31")
+client.username_pw_set(vhost + ":" + username, password)
+client.on_connect = onConnect
+client.on_message = onMessage
+
 def main():
     while True:
         try:
-            client = mqtt.Client(client_id="", clean_session=True, userdata=None, protocol="MQTTv31")
-            client.username_pw_set(vhost + ":" + username, password)
-            client.on_connect = onConnect
-            client.on_message = onMessage
             client.connect(server, port, keepalive=60, bind_address="") #connect
             client.loop_forever()   #automatically reconnect once loop forever
         except Exception, e:
