@@ -7,7 +7,7 @@ from sense_hat import SenseHat
 sense = SenseHat()
 sense.set_rotation(90)
 
-subprocess buttons_MQTT.py
+subprocess.run(['python', 'buttons_MQTT.py']).
 
 #Windows comport name
 #roboclaw.Open("COM3",115200)
