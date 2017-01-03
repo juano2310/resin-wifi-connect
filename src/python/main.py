@@ -3,7 +3,6 @@ import time
 import roboclaw
 import paho.mqtt.client as mqtt
 import subprocess
-import sensehat_MQTT
 from sense_hat import SenseHat
 from signal import pause
 
@@ -64,6 +63,20 @@ def onMessage(client, userdata, message):   #event on receiving message
 		roboclaw.TurnLeftMixed(address, 0)
 	if roboAction != "":	#Remove this IF to show all MQTT messages
 		print("Action: " + roboAction + ", Topic: " + message.topic + ", Message: " + message.payload)
+
+def sensors_MQTT():
+	while True:
+            client.publish("sense/temp", round(sense.get_temperature(),1))
+            client.publish("sense/humidity", round(sense.get_humidity(),0))
+            client.publish("sense/pressure", round(sense.get_pressure(),0))
+            accel_only = sense.get_accelerometer()
+            client.publish("sense/pitch", "{pitch}".format(**accel_only))
+            client.publish("sense/roll", "{roll}".format(**accel_only))
+            client.publish("sense/yaw", "{yaw}".format(**accel_only))
+
+def joystick_MQTT():
+    sense.stick.direction_any = joystick_pushed
+    pause()
 
 while True:
     try:
