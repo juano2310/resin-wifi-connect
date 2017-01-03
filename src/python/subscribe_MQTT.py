@@ -52,7 +52,7 @@ def onMessage(client, userdata, message):   #event on receiving message
 	elif message.payload == "39":
 		roboclaw.TurnRightMixed(address, 64)
 		roboAction = "Turning Right"
-	elif message.payload == "button_held":
+	elif message.payload == "middle_held":
 		subprocess.call(["node", "src/app.js", "--clear=true"])
 		roboAction = "Reset WiFi"
 	elif message.payload == "":

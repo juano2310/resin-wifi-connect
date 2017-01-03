@@ -18,7 +18,6 @@ try:
     	client.loop_start()
 except Exception, e:
     print e
-        client.loop_stop()
 
 def joystick_pushed(event):
     client.publish("commands/joystick", event.direction + "_" + event.action)
