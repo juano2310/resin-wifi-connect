@@ -1,5 +1,4 @@
 from sense_hat import SenseHat
-import time
 import paho.mqtt.client as mqtt
 
 sense = SenseHat()
@@ -21,12 +20,11 @@ try:
 	while True:
             client.publish("sense/temp", round(sense.get_temperature(),1))
             client.publish("sense/humidity", round(sense.get_humidity(),0))
-            client.publish("sense/pressure", round(sense.get_pressure(),0))            
+            client.publish("sense/pressure", round(sense.get_pressure(),0))
             accel_only = sense.get_accelerometer()
             client.publish("sense/pitch", "{pitch}".format(**accel_only))
             client.publish("sense/roll", "{roll}".format(**accel_only))
             client.publish("sense/yaw", "{yaw}".format(**accel_only))
-            time.sleep(5)
 
 except Exception, e:
     print e

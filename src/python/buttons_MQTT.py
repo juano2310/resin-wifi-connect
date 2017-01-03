@@ -13,16 +13,16 @@ sense = SenseHat()
 
 print("Starting Buttons to MQTT")
 
-with daemon.DaemonContext():
-    try:
-        # set up mqtt client
-    	client = mqtt.Client(client_id="", clean_session=True, userdata=None, protocol="MQTTv31")
-    	client.username_pw_set(vhost + ":" + username, password)
-    	client.connect(server, port, keepalive=60, bind_address="") #connect
-        client.loop_start()
-    except Exception, e:
-        print e
+try:
+    # set up mqtt client
+	client = mqtt.Client(client_id="", clean_session=True, userdata=None, protocol="MQTTv31")
+	client.username_pw_set(vhost + ":" + username, password)
+	client.connect(server, port, keepalive=60, bind_address="") #connect
+    client.loop_start()
+except Exception, e:
+    print e
 
+with daemon.DaemonContext():
     def joystick_pushed(event):
         client.publish("commands/joystick", event.direction + "_" + event.action)
 
