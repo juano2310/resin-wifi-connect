@@ -22,7 +22,7 @@ port = 1883
 vhost = "/"
 username = "guest"
 password = "guest"
-topic = "robot/commands/#"
+topic = "commands/#"
 
 """
  * This method is the callback on connecting to broker.
