@@ -20,7 +20,7 @@ node src/app.js --clear=false
 python src/python/connection_status.py
 
 # Start rabbitmq
-sudo rabbitmq-server service start -detached >&-
+sudo rabbitmq-server service start -detached
 
 sleep 50 # Delay needed to avoid MQTT connection errors
 
