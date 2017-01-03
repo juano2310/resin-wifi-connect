@@ -19,7 +19,6 @@ RUN apt-get update \
     python-psutil \
 		python-pip \
 		python-serial \
-		python-daemon \
     wireless-tools && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
