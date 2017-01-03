@@ -22,12 +22,7 @@ python src/python/connection_status.py
 # Start rabbitmq
 sudo rabbitmq-server service start -detached
 
-# Run deamons
-#python src/python/buttons_MQTT.py
-#python src/python/sensehat_MQTT.py
-#python src/python/driver_MQTT.py
-#python src/python/watchdog.py
-
+sleep 20 # Delay needed to avoid MQTT connection errors
 
 # Start the main application
 python src/python/main.py

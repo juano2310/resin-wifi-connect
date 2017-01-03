@@ -1,10 +1,11 @@
 import threading
 import time
-from sense_hat import SenseHat
-from signal import pause
 import roboclaw
 import paho.mqtt.client as mqtt
 import subprocess
+import sensehat_MQTT
+from sense_hat import SenseHat
+from signal import pause
 
 server = "localhost"
 port = 1883
@@ -29,25 +30,11 @@ roboclaw.TurnRightMixed(address, 0)
 def joystick_pushed(event):
     client.publish("commands/joystick", event.direction + "_" + event.action)
 
-def joystick_MQTT():
-    sense.stick.direction_any = joystick_pushed
-    pause()
-
-def sense_MQTT():
-	while True:
-            client.publish("sense/temp", round(sense.get_temperature(),1))
-            client.publish("sense/humidity", round(sense.get_humidity(),0))
-            client.publish("sense/pressure", round(sense.get_pressure(),0))
-            accel_only = sense.get_accelerometer()
-            client.publish("sense/pitch", "{pitch}".format(**accel_only))
-            client.publish("sense/roll", "{roll}".format(**accel_only))
-            client.publish("sense/yaw", "{yaw}".format(**accel_only))
-
 def onConnect(client, userdata, rc):    #event on connecting
     client.subscribe([(topic, 1)])  #subscribe
     sense.show_message("Ready", text_colour=[255, 0, 255])
     w = threading.Thread(target=joystick_MQTT)
-    w2 = threading.Thread(target=sense_MQTT)
+    w2 = threading.Thread(target=sensors_MQTT)
     w.start()
     w2.start()
     print("Ready")
