@@ -27,16 +27,15 @@ address = 0x80
 roboclaw.ForwardMixed(address, 0)
 roboclaw.TurnRightMixed(address, 0)
 
-def joystick_pushed(event):
-    client.publish("commands/joystick", event.direction + "_" + event.action)
-
 def onConnect(client, userdata, rc):    #event on connecting
     client.subscribe([(topic, 1)])  #subscribe
-    sense.show_message("Ready", text_colour=[255, 0, 255])
     w = threading.Thread(target=joystick_MQTT)
-    w2 = threading.Thread(target=sensors_MQTT)
+    w2 = threading.Thread(target=slow_sensors_MQTT)
+    w3 = threading.Thread(target=fast_sensors_MQTT)
     w.start()
     w2.start()
+    w3.start()
+    sense.show_message("Ready", text_colour=[255, 0, 255])    
     print("Ready")
 
 def onMessage(client, userdata, message):   #event on receiving message
@@ -64,15 +63,22 @@ def onMessage(client, userdata, message):   #event on receiving message
 	if roboAction != "":	#Remove this IF to show all MQTT messages
 		print("Action: " + roboAction + ", Topic: " + message.topic + ", Message: " + message.payload)
 
-def sensors_MQTT():
+def joystick_pushed(event):
+    client.publish("commands/joystick", event.direction + "_" + event.action)
+
+def slow_sensors_MQTT():
 	while True:
-            client.publish("sense/temp", round(sense.get_temperature(),1))
-            client.publish("sense/humidity", round(sense.get_humidity(),0))
-            client.publish("sense/pressure", round(sense.get_pressure(),0))
+            client.publish("sensor/temp", round(sense.get_temperature(),1))
+            client.publish("sensor/humidity", round(sense.get_humidity(),0))
+            client.publish("sensor/pressure", round(sense.get_pressure(),0))
+            time.sleep(100)
+
+def fast_sensors_MQTT():
+	while True:
             accel_only = sense.get_accelerometer()
-            client.publish("sense/pitch", "{pitch}".format(**accel_only))
-            client.publish("sense/roll", "{roll}".format(**accel_only))
-            client.publish("sense/yaw", "{yaw}".format(**accel_only))
+            client.publish("sensor/pitch", "{pitch}".format(**accel_only))
+            client.publish("sensor/roll", "{roll}".format(**accel_only))
+            client.publish("sensor/yaw", "{yaw}".format(**accel_only))
 
 def joystick_MQTT():
     sense.stick.direction_any = joystick_pushed
