@@ -18,7 +18,7 @@ try:
 	client.connect(server, port, keepalive=60, bind_address="") #connect
 	client.loop_start()
 
-    while True:
+	while True:
             client.publish("sense/temp", round(sense.get_temperature(),1))
             client.publish("sense/humidity", round(sense.get_humidity(),0))
             client.publish("sense/pressure", round(sense.get_pressure(),0))            
