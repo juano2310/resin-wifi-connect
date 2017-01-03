@@ -26,7 +26,7 @@ address = 0x80
 roboclaw.ForwardMixed(address, 0)
 roboclaw.TurnRightMixed(address, 0)
 
-def start_MQTT():
+def main():
     while True:
         try:
             client = mqtt.Client(client_id="", clean_session=True, userdata=None, protocol="MQTTv31")
@@ -62,6 +62,10 @@ def sense_MQTT():
 def onConnect(client, userdata, rc):    #event on connecting
     client.subscribe([(topic, 1)])  #subscribe
     sense.show_message("Ready", text_colour=[255, 0, 255])
+    w = threading.Thread(target=joystick_MQTT)
+    w2 = threading.Thread(target=sense_MQTT)
+    w.start()
+    w2.start()
     print("Ready")
 
 def onMessage(client, userdata, message):   #event on receiving message
@@ -89,10 +93,5 @@ def onMessage(client, userdata, message):   #event on receiving message
 	if roboAction != "":	#Remove this IF to show all MQTT messages
 		print("Action: " + roboAction + ", Topic: " + message.topic + ", Message: " + message.payload)
 
-s = threading.Thread(target=start_MQTT)
-w = threading.Thread(target=joystick_MQTT)
-w2 = threading.Thread(target=sense_MQTT)
-
-s.start()
-w.start()
-w2.start()
+if __name__ == "__main__":
+    main()
