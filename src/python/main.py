@@ -14,7 +14,7 @@ password = "guest"
 topic = "commands/#"
 
 sense = SenseHat()
-sense.set_rotation(270)
+sense.set_rotation(90)
 sense.set_imu_config(False, True, False)
 
 #Windows comport name
