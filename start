@@ -20,13 +20,15 @@ node src/app.js --clear=false
 python src/python/connection_status.py
 
 # Start rabbitmq
-sudo rabbitmq-server service start -detached
+sudo rabbitmq-server service start -detached >&-
 
 sleep 50 # Delay needed to avoid MQTT connection errors
 
 # Run deamons
+python src/python/buttons_MQTT.py
 #python src/python/sensehat_MQTT.py
 #python src/python/driver_MQTT.py
+#python src/python/watchdog.py
 
 # Start the main application
 python src/python/subscribe_MQTT.py

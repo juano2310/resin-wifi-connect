@@ -1,6 +1,7 @@
 from sense_hat import SenseHat, ACTION_PRESSED, ACTION_HELD, ACTION_RELEASED
 from signal import pause
 import paho.mqtt.client as mqtt
+import daemon
 
 server = "localhost"
 port = 1883
@@ -10,18 +11,20 @@ password = "guest"
 
 sense = SenseHat()
 
-try:
-    # set up mqtt client
-	client = mqtt.Client(client_id="", clean_session=True, userdata=None, protocol="MQTTv31")
-	client.username_pw_set(vhost + ":" + username, password)
-	client.connect(server, port, keepalive=60, bind_address="") #connect
-    	client.loop_start()
-except Exception, e:
-    print e
+print("Starting Buttons to MQTT")
 
-def joystick_pushed(event):
-    client.publish("commands/joystick", event.direction + "_" + event.action)
+with daemon.DaemonContext():
+    try:
+        # set up mqtt client
+    	client = mqtt.Client(client_id="", clean_session=True, userdata=None, protocol="MQTTv31")
+    	client.username_pw_set(vhost + ":" + username, password)
+    	client.connect(server, port, keepalive=60, bind_address="") #connect
+        	client.loop_start()
+    except Exception, e:
+        print e
 
-sense.stick.direction_any = joystick_pushed
+    def joystick_pushed(event):
+        client.publish("commands/joystick", event.direction + "_" + event.action)
 
-pause()
+    sense.stick.direction_any = joystick_pushed
+    pause()
