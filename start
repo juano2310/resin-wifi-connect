@@ -30,5 +30,6 @@ sleep 50 # Delay needed to avoid MQTT connection errors
 #python src/python/driver_MQTT.py
 #python src/python/watchdog.py
 
-# Start the main application
 python src/python/main.py
+# Start the main application
+python src/python/subscribe_MQTT.py
