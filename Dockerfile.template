@@ -1,8 +1,9 @@
 FROM resin/%%RESIN_MACHINE_NAME%%-node:6
 
-RUN apt-get update && sudo apt-get dist-upgrade && add-apt-repository http://www.linux-projects.org/listing/uv4l_repo/raspbian/ jessie main\
+RUN apt-get update && sudo apt-get dist-upgrade\
 	&& apt-get install -yq --no-install-recommends \
 		apt-utils \
+		software-properties-common \
 		dnsmasq \
 		hostapd \
 		iproute2 \
@@ -22,6 +23,8 @@ RUN apt-get update && sudo apt-get dist-upgrade && add-apt-repository http://www
 		python-serial \
     wireless-tools && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN deb
 
 # Upgrade pip
 # RUN pip install --upgrade pip
@@ -47,7 +50,7 @@ COPY . /usr/src/app/
 
 RUN ./node_modules/.bin/coffee -c ./src
 
-RUN apt-get update \
+RUN apt-get update  && add-apt-repository http://www.linux-projects.org/listing/uv4l_repo/raspbian/ jessie main\
 	&& apt-get install -yq --no-install-recommends \
 		uv4l \
 		uv4l-raspicam \
