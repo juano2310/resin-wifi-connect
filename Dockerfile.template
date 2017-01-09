@@ -2,7 +2,7 @@ FROM resin/%%RESIN_MACHINE_NAME%%-node:6
 
 RUN echo "deb http://www.linux-projects.org/listing/uv4l_repo/raspbian/ jessie main" >> /etc/apt/sources.list
 
-RUN apt-get dist-upgrade && apt-get update\
+RUN apt-get update\
 	&& apt-get install -yq --no-install-recommends \
 		apt-utils \
 		software-properties-common \
