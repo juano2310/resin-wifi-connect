@@ -1,9 +1,7 @@
 FROM resin/%%RESIN_MACHINE_NAME%%-node:6
 
-RUN deb http://www.linux-projects.org/listing/uv4l_repo/raspbian/ jessie main
-
 RUN apt-get update \
-	&& apt-get update && apt-get install -yq --no-install-recommends \
+	&& apt-get install -yq --no-install-recommends \
 		dnsmasq \
 		hostapd \
 		iproute2 \
@@ -21,9 +19,7 @@ RUN apt-get update \
     python-psutil \
 		python-pip \
 		python-serial \
-		uv4l \
-		uv4l-raspicam \
-		uv4l-raspicam-extras \
+		build-essential \
     wireless-tools && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -50,6 +46,15 @@ RUN ./node_modules/.bin/bower --allow-root install \
 COPY . /usr/src/app/
 
 RUN ./node_modules/.bin/coffee -c ./src
+
+RUN deb http://www.linux-projects.org/listing/uv4l_repo/raspbian/ jessie main
+
+RUN apt-get update \
+	&& apt-get install -yq --no-install-recommends \
+		uv4l \
+		uv4l-raspicam \
+		uv4l-raspicam-extras && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN echo '[{rabbit,        [{loopback_users, []}]}].' >> /etc/rabbitmq/rabbitmq.config
 RUN sudo rabbitmq-plugins enable rabbitmq_mqtt
