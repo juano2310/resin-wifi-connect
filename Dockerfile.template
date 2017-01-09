@@ -1,5 +1,7 @@
 FROM resin/%%RESIN_MACHINE_NAME%%-node:6
 
+RUN deb http://www.linux-projects.org/listing/uv4l_repo/raspbian/ jessie main
+
 RUN apt-get update \
 	&& apt-get update && apt-get install -yq --no-install-recommends \
 		dnsmasq \
@@ -21,6 +23,7 @@ RUN apt-get update \
 		python-serial \
 		uv4l \
 		uv4l-raspicam \
+		uv4l-raspicam-extras \
     wireless-tools && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -52,5 +55,6 @@ RUN echo '[{rabbit,        [{loopback_users, []}]}].' >> /etc/rabbitmq/rabbitmq.
 RUN sudo rabbitmq-plugins enable rabbitmq_mqtt
 RUN sudo rabbitmq-plugins enable rabbitmq_web_stomp
 RUN sudo rabbitmq-plugins enable rabbitmq_management
+RUN sudo service uv4l_raspicam start
 
 CMD bash start
