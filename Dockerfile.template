@@ -24,7 +24,12 @@ RUN apt-get update && sudo apt-get dist-upgrade\
     wireless-tools && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN deb
+RUN apt-get update && add-apt-repository http://www.linux-projects.org/listing/uv4l_repo/raspbian/ jessie main\
+	&& apt-get install -yq --no-install-recommends \
+		uv4l \
+		uv4l-raspicam \
+		uv4l-raspicam-extras && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Upgrade pip
 # RUN pip install --upgrade pip
@@ -49,13 +54,6 @@ RUN ./node_modules/.bin/bower --allow-root install \
 COPY . /usr/src/app/
 
 RUN ./node_modules/.bin/coffee -c ./src
-
-RUN apt-get update  && add-apt-repository http://www.linux-projects.org/listing/uv4l_repo/raspbian/ jessie main\
-	&& apt-get install -yq --no-install-recommends \
-		uv4l \
-		uv4l-raspicam \
-		uv4l-raspicam-extras && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN echo '[{rabbit,        [{loopback_users, []}]}].' >> /etc/rabbitmq/rabbitmq.config
 RUN sudo rabbitmq-plugins enable rabbitmq_mqtt
