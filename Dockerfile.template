@@ -8,7 +8,8 @@ RUN apt-get update \
 	&& apt-get -f install \
 		uv4l \
 		uv4l-raspicam \
-		uv4l-raspicam-extras && \
+		uv4l-raspicam-extras\
+		uv4l-webrtc && \
 		apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update \
@@ -62,9 +63,6 @@ RUN sudo rabbitmq-plugins enable rabbitmq_mqtt
 RUN sudo rabbitmq-plugins enable rabbitmq_web_stomp
 RUN sudo rabbitmq-plugins enable rabbitmq_management
 
-RUN echo "start_x=1             # essential" >> /boot/config.txt
-RUN echo "gpu_mem=128           # at least, or maybe more if you wish" >> /boot/config.txt
-RUN echo "disable_camera_led=1  # optional, if you don't want the led to glow" >> /boot/config.txt
-RUN sudo service uv4l_raspicam start
+#RUN sudo service uv4l_raspicam start
 
 CMD bash start
