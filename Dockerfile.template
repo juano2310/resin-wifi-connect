@@ -9,7 +9,7 @@ RUN apt-get update \
 		iproute2 \
 		iw \
 		sense-hat \
-		# raspberrypi-bootloader \
+		raspberrypi-bootloader \
 		libdbus-1-dev \
 		libexpat-dev \
 		rabbitmq-server \
@@ -21,9 +21,9 @@ RUN apt-get update \
     python-psutil \
 		python-pip \
 		python-serial \
-		uv4l \
-		uv4l-raspicam \
-		uv4l-raspicam-extras \
+		#uv4l \
+		#uv4l-raspicam \
+		#uv4l-raspicam-extras \
     wireless-tools && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
