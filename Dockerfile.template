@@ -2,13 +2,14 @@ FROM resin/%%RESIN_MACHINE_NAME%%-node:6
 
 RUN echo "deb http://www.linux-projects.org/listing/uv4l_repo/raspbian/ jessie main" >> /etc/apt/sources.list
 
-RUN apt-get update && apt-get install -yq --no-install-recommend \
+RUN apt-get update
+	&& apt-get install \
 		dnsmasq \
 		hostapd \
 		iproute2 \
 		iw \
 		sense-hat \
-		raspberrypi-bootloader \
+		# raspberrypi-bootloader \
 		libdbus-1-dev \
 		libexpat-dev \
 		rabbitmq-server \
@@ -20,6 +21,9 @@ RUN apt-get update && apt-get install -yq --no-install-recommend \
     python-psutil \
 		python-pip \
 		python-serial \
+		uv4l \
+		uv4l-raspicam \
+		uv4l-raspicam-extras \
     wireless-tools && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
