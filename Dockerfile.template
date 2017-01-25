@@ -46,8 +46,8 @@ RUN mkdir -p /usr/src/app/
 WORKDIR /usr/src/app
 
 # Install raspistill
-RUN git clone https://github.com/raspberrypi/userland.git
-RUN bash ./usr/src/app/userland/buildme
+RUN git clone https://github.com/raspberrypi/userland.git /usr/src/app
+RUN bash /usr/src/app/userland/.buildme
 
 RUN echo '/opt/vc/lib' >> /etc/ld.so.conf/libc.conf
 
