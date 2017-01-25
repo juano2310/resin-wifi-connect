@@ -5,6 +5,7 @@ RUN echo "deb http://www.linux-projects.org/listing/uv4l_repo/raspbian/ jessie m
 RUN curl http://www.linux-projects.org/listing/uv4l_repo/lrkey.asc | sudo apt-key add -
 
 RUN apt-get update \
+	&& dist-upgrade \
 	&& apt-get -f install \
 		uv4l \
 		uv4l-raspicam \
