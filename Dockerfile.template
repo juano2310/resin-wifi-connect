@@ -37,7 +37,7 @@ RUN apt-get update \
 # Install paho-mqtt library
 RUN git clone https://github.com/raspberrypi/userland.git
 RUN cd userland
-RUN ./buildme
+RUN bash ./buildme
 
 # Upgrade pip
 # RUN pip install --upgrade pip
