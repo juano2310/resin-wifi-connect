@@ -26,12 +26,13 @@ RUN apt-get update \
 		erlang \
 		logrotate \
 		rfkill \
-    python-dev \
-    python-smbus \
-    python-psutil \
+	    python-dev \
+	    python-smbus \
+	    python-psutil \
 		python-pip \
 		python-serial \
-    wireless-tools && \
+		libraspberrypi-bin \
+	    wireless-tools && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Upgrade pip
