@@ -35,10 +35,12 @@ RUN apt-get update \
 	    wireless-tools && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install paho-mqtt library
+# Install raspistill
 RUN git clone https://github.com/raspberrypi/userland.git
 RUN cd userland
 RUN bash ./buildme
+
+RUN echo '/opt/vc/lib' >> /etc/ld.so.conf/libc.conf
 
 # Upgrade pip
 # RUN pip install --upgrade pip
