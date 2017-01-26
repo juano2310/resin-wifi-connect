@@ -3,6 +3,10 @@ FROM resin/%%RESIN_MACHINE_NAME%%-node:6
 #switch on systemd init system in container
 ENV INITSYSTEM on
 
+RUN apt-get update && apt-get install -y rpi-update
+
+RUN rpi-update
+
 RUN echo "deb http://www.linux-projects.org/listing/uv4l_repo/raspbian/ jessie main" >> /etc/apt/sources.list
 
 RUN curl http://www.linux-projects.org/listing/uv4l_repo/lrkey.asc | sudo apt-key add -
@@ -22,11 +26,6 @@ RUN apt-get update \
 		hostapd \
 		iproute2 \
 		iw \
-		libraspberrypi-bin \
-		libraspberrypi-dev \
-		libraspberrypi-doc \
-		libraspberrypi0 \
-		python-rpi.gpio	\
 		raspberrypi-bootloader \
 		sense-hat \
 		libdbus-1-dev \
