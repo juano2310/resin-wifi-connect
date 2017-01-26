@@ -24,7 +24,7 @@ RUN apt-get update \
 		iw \
 		libraspberrypi-bin \
 		libraspberrypi-dev \
-		libraspberrypi-doc
+		libraspberrypi-doc \
 		libraspberrypi0 \
 		python-rpi.gpio	\
 		raspberrypi-bootloader \
