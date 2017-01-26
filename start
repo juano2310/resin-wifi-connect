@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Enable i2c - needed for the Display-O-Tron HAT
-modprobe snd-bcm2835
+modprobe bcm2835-v4l2
 modprobe i2c-dev
 
 # Run once the first time
