@@ -49,7 +49,7 @@ WORKDIR /usr/src/app
 CMD bash git clone https://github.com/raspberrypi/userland.git /usr/src/app/userland
 CMD bash /usr/src/app/userland/./buildme
 
-RUN echo '/opt/vc/lib' >> /etc/ld.so.conf/libc.conf
+RUN echo '/opt/vc/lib' >> /etc/ld.so.conf.d/libc.conf
 
 COPY package.json /usr/src/app/
 
