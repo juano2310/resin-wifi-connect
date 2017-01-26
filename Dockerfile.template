@@ -3,9 +3,13 @@ FROM resin/%%RESIN_MACHINE_NAME%%-node:6
 #switch on systemd init system in container
 ENV INITSYSTEM on
 
-RUN apt-get update && apt-get install -y rpi-update
+#RUN apt-get update && apt-get install -y rpi-update
 
-RUN rpi-update
+#RUN rpi-update
+
+RUN apt-get update && apt-get install -y \
+    build-essential libraspberrypi0 libraspberrypi-bin && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN echo "deb http://www.linux-projects.org/listing/uv4l_repo/raspbian/ jessie main" >> /etc/apt/sources.list
 
