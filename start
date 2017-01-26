@@ -2,6 +2,7 @@
 
 # Enable i2c - needed for the Display-O-Tron HAT
 modprobe i2c-dev
+modprobe bcm2835-v4l2
 
 # Run once the first time
 python src/python/start.py
