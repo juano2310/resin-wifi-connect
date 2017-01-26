@@ -31,7 +31,7 @@ RUN apt-get update \
 		iproute2 \
 		iw \
 		sense-hat \
-		raspberrypi-bootloader \
+#		raspberrypi-bootloader \
 		libdbus-1-dev \
 		libexpat-dev \
 		rabbitmq-server \
@@ -55,13 +55,6 @@ RUN pip install paho-mqtt
 RUN mkdir -p /usr/src/app/
 
 WORKDIR /usr/src/app
-
-# Install raspistill
-RUN git clone https://github.com/raspberrypi/userland.git /usr/src/app/userland
-RUN /usr/src/app/userland/buildme
-
-#RUN echo '/opt/vc/lib' >> /etc/ld.so.conf.d/libc.conf
-CMD bash export PATH=$PATH:/opt/vc/lib
 
 COPY package.json /usr/src/app/
 
