@@ -22,13 +22,13 @@ RUN apt-get update \
 		hostapd \
 		iproute2 \
 		iw \
-		sense-hat \
 		libraspberrypi-bin \
 		libraspberrypi-dev \
 		libraspberrypi-doc
-        libraspberrypi0 \
+		libraspberrypi0 \
 		python-rpi.gpio	\
 		raspberrypi-bootloader \
+		sense-hat \
 		libdbus-1-dev \
 		libexpat-dev \
 		rabbitmq-server \
