@@ -52,7 +52,8 @@ WORKDIR /usr/src/app
 RUN git clone https://github.com/raspberrypi/userland.git /usr/src/app/userland
 CMD bash /usr/src/app/userland/buildme
 
-RUN echo '/opt/vc/lib' >> /etc/ld.so.conf.d/libc.conf
+#RUN echo '/opt/vc/lib' >> /etc/ld.so.conf.d/libc.conf
+CMD bash export PATH=$PATH:/opt/vc/lib
 
 COPY package.json /usr/src/app/
 
